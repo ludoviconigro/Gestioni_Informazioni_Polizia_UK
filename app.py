@@ -139,16 +139,21 @@ def Senior_officers():
 
 @app.route('/people_data/<city>')
 def people_data(city):
-    # Ottiene i dati delle persone per la città specificata
-    people_data = get_people_data(city)
-    # Verifica se sono stati ottenuti dati validi
-    if people_data is not None:
-        # Passa i dati delle persone e il nome della città al template HTML per essere visualizzati
-        return render_template_string(people_data_html, city=city, people_data=people_data)
+        # Verifica se l'utente è autenticato tramite sessione
+    if 'email' not in session:
+        # Se l'utente non è autenticato, reindirizzalo alla pagina di login
+        return redirect(url_for('login'))
     else:
-        # Se non ci sono dati disponibili per la città, reindirizza alla pagina 'Senior_officers'
-        # con un messaggio di errore
-        return render_template_string(Senior_officers_html, error_message="Città non valida o nessun dato disponibile.")
+        # Ottiene i dati delle persone per la città specificata
+        people_data = get_people_data(city)
+        # Verifica se sono stati ottenuti dati validi
+        if people_data is not None:
+            # Passa i dati delle persone e il nome della città al template HTML per essere visualizzati
+            return render_template_string(people_data_html, city=city, people_data=people_data)
+        else:
+            # Se non ci sono dati disponibili per la città, reindirizza alla pagina 'Senior_officers'
+            # con un messaggio di errore
+            return render_template_string(Senior_officers_html, error_message="Città non valida o nessun dato disponibile.")
 #FINE ROTTA ELENCO UFFICIALI SUPERIORI
 
 
@@ -232,16 +237,21 @@ def quartiere_forze():
 
 @app.route('/quartiere_forze_LISTA/<city>')
 def quartiere_forze_LISTA(city):
-    # Ottiene i dati sui quartieri per la città specificata
-    quartiere_forze_LISTA = get_quartiere_forze(city)
-    # Verifica se sono stati ottenuti dati validi
-    if quartiere_forze_LISTA is not None:
-        # Passa i dati dei quartieri e il nome della città al template HTML per essere visualizzati
-        return render_template_string(quartiere_forze_LISTA_html, city=city, quartiere_forze_LISTA=quartiere_forze_LISTA)
+        # Verifica se l'utente è autenticato tramite sessione
+    if 'email' not in session:
+        # Se l'utente non è autenticato, reindirizzalo alla pagina di login
+        return redirect(url_for('login'))
     else:
-        # Se non ci sono dati disponibili per la città, reindirizza alla pagina 'quartiere_forze'
-        # con un messaggio di errore
-        return render_template_string(quartiere_forze_html, error_message="Città non valida o nessun dato disponibile.")
+        # Ottiene i dati sui quartieri per la città specificata
+        quartiere_forze_LISTA = get_quartiere_forze(city)
+        # Verifica se sono stati ottenuti dati validi
+        if quartiere_forze_LISTA is not None:
+            # Passa i dati dei quartieri e il nome della città al template HTML per essere visualizzati
+            return render_template_string(quartiere_forze_LISTA_html, city=city, quartiere_forze_LISTA=quartiere_forze_LISTA)
+        else:
+            # Se non ci sono dati disponibili per la città, reindirizza alla pagina 'quartiere_forze'
+            # con un messaggio di errore
+            return render_template_string(quartiere_forze_html, error_message="Città non valida o nessun dato disponibile.")
 # FINE ROTTA ELENCO DELLE ZONE DI COMPETENZA DI UNA FORZA
 
 if __name__ == '__main__':
