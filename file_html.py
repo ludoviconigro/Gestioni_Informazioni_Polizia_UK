@@ -59,7 +59,7 @@ home_html = '''
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Homepage</title>
+    <title>Homepage</title>
     <style>
         body {
             display: flex;
@@ -217,9 +217,59 @@ Senior_officers_html = """
     <h1>Inserire il nome della città per ottenere le informazioni degli Ufficiali di alto grado:</h1>
     <form method="post">
         <label for="city">Citt&agrave:</label>
-        <input type="text" id="city" name="city" required>
+        <select id="city" name="city" required>
+        <option value>
+        <option value="avon-and-somerset">Avon and Somerset Constabulary</option>
+        <option value="bedfordshire">Bedfordshire Police</option>
+        <option value="cambridgeshire">Cambridgeshire Constabulary</option>
+        <option value="cheshire">Cheshire Constabulary</option>
+        <option value="city-of-london">City of London Police</option>
+        <option value="cleveland">Cleveland Police</option>
+        <option value="cumbria">Cumbria Constabulary</option>
+        <option value="derbyshire">Derbyshire Constabulary</option>
+        <option value="devon-and-cornwall">Devon & Cornwall Police</option>
+        <option value="dorset">Dorset Police</option>
+        <option value="durham">Durham Constabulary</option>
+        <option value="dyfed-powys">Dyfed-Powys Police</option>
+        <option value="essex">Essex Police</option>
+        <option value="gloucestershire">Gloucestershire Constabulary</option>
+        <option value="greater-manchester">Greater Manchester Police</option>
+        <option value="gwent">Gwent Police</option>
+        <option value="hampshire">Hampshire Constabulary</option>
+        <option value="hertfordshire">Hertfordshire Constabulary</option>
+        <option value="humberside">Humberside Police</option>
+        <option value="kent">Kent Police</option>
+        <option value="lancashire">Lancashire Constabulary</option>
+        <option value="leicestershire">Leicestershire Police</option>
+        <option value="lincolnshire">Lincolnshire Police</option>
+        <option value="merseyside">Merseyside Police</option>
+        <option value="metropolitan">Metropolitan Police Service</option>
+        <option value="norfolk">Norfolk Constabulary</option>
+        <option value="north-wales">North Wales Police</option>
+        <option value="north-yorkshire">North Yorkshire Police</option>
+        <option value="northamptonshire">Northamptonshire Police</option>
+        <option value="northumbria">Northumbria Police</option>
+        <option value="nottinghamshire">Nottinghamshire Police</option>
+        <option value="northern-ireland">Police Service of Northern Ireland</option>
+        <option value="south-wales">South Wales Police</option>
+        <option value="south-yorkshire">South Yorkshire Police</option>
+        <option value="staffordshire">Staffordshire Police</option>
+        <option value="suffolk">Suffolk Constabulary</option>
+        <option value="surrey">Surrey Police</option>
+        <option value="sussex">Sussex Police</option>
+        <option value="thames-valley">Thames Valley Police</option>
+        <option value="warwickshire">Warwickshire Police</option>
+        <option value="west-mercia">West Mercia Police</option>
+        <option value="west-midlands">West Midlands Police</option>
+        <option value="west-yorkshire">West Yorkshire Police</option>
+        <option value="wiltshire">Wiltshire Police</option>
+    </select>
         <input type="submit" value="Ricerca">
     </form>
+        <form action="/github/callback" method="get" >
+        <button type="submit">Homepage</button>
+    </form>
+
 </body>
 </html>
 """
@@ -248,8 +298,8 @@ people_data_html = """
             </tr>
         {% endfor %}
     </table>
-    <form action="/github/callback" method="get" >
-        <button type="submit">Homepage</button>
+    <form action="/Senior_officers" method="get" >
+        <button type="submit">Indietro</button>
     </form>
     </body>
 </html>
@@ -269,7 +319,53 @@ force_data_html = '''
         <h1>Inserire il nome della città per ottenere i contatti delle forza dell'ordine in una citt&agrave:</h1>
     <form action="/force_data" method="post">
         <label for="city">Citt&agrave:</label>
-        <input type="text" id="city" name="city" required>
+        <select id="city" name="city" required>
+        <option value>
+        <option value="avon-and-somerset">Avon and Somerset Constabulary</option>
+        <option value="bedfordshire">Bedfordshire Police</option>
+        <option value="cambridgeshire">Cambridgeshire Constabulary</option>
+        <option value="cheshire">Cheshire Constabulary</option>
+        <option value="city-of-london">City of London Police</option>
+        <option value="cleveland">Cleveland Police</option>
+        <option value="cumbria">Cumbria Constabulary</option>
+        <option value="derbyshire">Derbyshire Constabulary</option>
+        <option value="devon-and-cornwall">Devon & Cornwall Police</option>
+        <option value="dorset">Dorset Police</option>
+        <option value="durham">Durham Constabulary</option>
+        <option value="dyfed-powys">Dyfed-Powys Police</option>
+        <option value="essex">Essex Police</option>
+        <option value="gloucestershire">Gloucestershire Constabulary</option>
+        <option value="greater-manchester">Greater Manchester Police</option>
+        <option value="gwent">Gwent Police</option>
+        <option value="hampshire">Hampshire Constabulary</option>
+        <option value="hertfordshire">Hertfordshire Constabulary</option>
+        <option value="humberside">Humberside Police</option>
+        <option value="kent">Kent Police</option>
+        <option value="lancashire">Lancashire Constabulary</option>
+        <option value="leicestershire">Leicestershire Police</option>
+        <option value="lincolnshire">Lincolnshire Police</option>
+        <option value="merseyside">Merseyside Police</option>
+        <option value="metropolitan">Metropolitan Police Service</option>
+        <option value="norfolk">Norfolk Constabulary</option>
+        <option value="north-wales">North Wales Police</option>
+        <option value="north-yorkshire">North Yorkshire Police</option>
+        <option value="northamptonshire">Northamptonshire Police</option>
+        <option value="northumbria">Northumbria Police</option>
+        <option value="nottinghamshire">Nottinghamshire Police</option>
+        <option value="northern-ireland">Police Service of Northern Ireland</option>
+        <option value="south-wales">South Wales Police</option>
+        <option value="south-yorkshire">South Yorkshire Police</option>
+        <option value="staffordshire">Staffordshire Police</option>
+        <option value="suffolk">Suffolk Constabulary</option>
+        <option value="surrey">Surrey Police</option>
+        <option value="sussex">Sussex Police</option>
+        <option value="thames-valley">Thames Valley Police</option>
+        <option value="warwickshire">Warwickshire Police</option>
+        <option value="west-mercia">West Mercia Police</option>
+        <option value="west-midlands">West Midlands Police</option>
+        <option value="west-yorkshire">West Yorkshire Police</option>
+        <option value="wiltshire">Wiltshire Police</option>
+    </select>
         <button type="submit">Ricerca</button>
     </form>
 
@@ -321,8 +417,57 @@ quartiere_forze_html = """
     <h1>Elenco delle zone di competenza di una forza dell'ordine:</h1>
     <form method="post">
         <label for="city">Citt&agrave:</label>
-        <input type="text" id="city" name="city" required>
+        <select id="city" name="city" required>
+        <option value>
+        <option value="avon-and-somerset">Avon and Somerset Constabulary</option>
+        <option value="bedfordshire">Bedfordshire Police</option>
+        <option value="cambridgeshire">Cambridgeshire Constabulary</option>
+        <option value="cheshire">Cheshire Constabulary</option>
+        <option value="city-of-london">City of London Police</option>
+        <option value="cleveland">Cleveland Police</option>
+        <option value="cumbria">Cumbria Constabulary</option>
+        <option value="derbyshire">Derbyshire Constabulary</option>
+        <option value="devon-and-cornwall">Devon & Cornwall Police</option>
+        <option value="dorset">Dorset Police</option>
+        <option value="durham">Durham Constabulary</option>
+        <option value="dyfed-powys">Dyfed-Powys Police</option>
+        <option value="essex">Essex Police</option>
+        <option value="gloucestershire">Gloucestershire Constabulary</option>
+        <option value="greater-manchester">Greater Manchester Police</option>
+        <option value="gwent">Gwent Police</option>
+        <option value="hampshire">Hampshire Constabulary</option>
+        <option value="hertfordshire">Hertfordshire Constabulary</option>
+        <option value="humberside">Humberside Police</option>
+        <option value="kent">Kent Police</option>
+        <option value="lancashire">Lancashire Constabulary</option>
+        <option value="leicestershire">Leicestershire Police</option>
+        <option value="lincolnshire">Lincolnshire Police</option>
+        <option value="merseyside">Merseyside Police</option>
+        <option value="metropolitan">Metropolitan Police Service</option>
+        <option value="norfolk">Norfolk Constabulary</option>
+        <option value="north-wales">North Wales Police</option>
+        <option value="north-yorkshire">North Yorkshire Police</option>
+        <option value="northamptonshire">Northamptonshire Police</option>
+        <option value="northumbria">Northumbria Police</option>
+        <option value="nottinghamshire">Nottinghamshire Police</option>
+        <option value="northern-ireland">Police Service of Northern Ireland</option>
+        <option value="south-wales">South Wales Police</option>
+        <option value="south-yorkshire">South Yorkshire Police</option>
+        <option value="staffordshire">Staffordshire Police</option>
+        <option value="suffolk">Suffolk Constabulary</option>
+        <option value="surrey">Surrey Police</option>
+        <option value="sussex">Sussex Police</option>
+        <option value="thames-valley">Thames Valley Police</option>
+        <option value="warwickshire">Warwickshire Police</option>
+        <option value="west-mercia">West Mercia Police</option>
+        <option value="west-midlands">West Midlands Police</option>
+        <option value="west-yorkshire">West Yorkshire Police</option>
+        <option value="wiltshire">Wiltshire Police</option>
+    </select>
         <input type="submit" value="Ricerca">
+    </form>
+                <form action="/github/callback" method="get" >
+        <button type="submit">Homepage</button>
     </form>
 </body>
 </html>
@@ -370,9 +515,10 @@ quartiere_forze_LISTA_html = """
             </tr>
         {% endfor %}
     </table>
-        <form action="/github/callback">
-        <button type="submit">Homepage</button>
+        <form action="/quartiere_forze">
+        <button type="submit">Indietro</button>
     </form>
+
 </body>
 </html>
 """
