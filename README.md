@@ -39,12 +39,38 @@ Una volta che Flask è stato installato con successo, puoi avviare l'applicazion
 ```
 . venv/bin/activate
 ```
-3. Imposta la variabile d'ambiente OAUTHLIB_INSECURE_TRANSPORT a 1 per consentire il trasporto non sicuro per OAuth. Puoi farlo con il comando:
+3. Imposta la variabile d'ambiente OAUTHLIB_INSECURE_TRANSPORT a 1 per consentire il trasporto non sicuro per OAuth.
+   OAuth è un protocollo di autorizzazione standard che consente alle applicazioni di ottenere l'accesso limitato a un servizio su behalf di un utente, senza richiedere le credenziali di accesso direttamente. Di solito, il trasporto dei dati OAuth dovrebbe avvenire su un canale sicuro, come HTTPS, per proteggere i dati sensibili degli utenti durante la comunicazione.
+Impostare OAUTHLIB_INSECURE_TRANSPORT su 1 indica che si desidera bypassare il controllo di sicurezza del trasporto per OAuth. 
+Questo può essere utile in situazioni di sviluppo o test in cui non è necessario o praticabile utilizzare HTTPS, ma non è affatto raccomandato in ambienti di produzione o quando sono coinvolti dati sensibili degli utenti.
+La variabile d'ambiente si può modificare con il comando:
 ```
 export OAUTHLIB_INSECURE_TRANSPORT=1
+```
+  3.1. Flask supporta l'uso di certificati generati al volo, che sono utili per servire rapidamente un'applicazione tramite HTTPS senza dover gestire i               certificati manualmente. 
+```
+flask run --cert=adhoc
+```
+3.2. Attraverso strumenti quale OpenSSL si può generare un certificato SSL autofirmato. 
+      Eseguendo il seguente comando nel terminale:
+```
+openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+```
+Questo comando genera una nuova chiave privata RSA (key.pem) e un certificato autofirmato (cert.pem) valido per 365 giorni. 
+Per avviare l'app bisogna sempre da terminale:
+
+```
+$ flask run --cert=cert.pem --key=key.pem
 ```
 4. Avvia l'applicazione eseguendo il comando:
 ```
 python app.py
 ```
 5. Una volta avviato con successo, l'applicazione sarà accessibile tramite il browser web all'indirizzo locale http://localhost:5000/.
+
+# Implementazioni future
+Il progetto è in continua evoluzione e potrebbe includere le seguenti funzionalità in futuro:
+
+* Implementazione di tutte le altre funzionalità offerte dall'API.
+* Aggiunta della possibilità di autenticazione tramite servizi OAuth come Google, Apple o SPID.
+* Espansione del servizio per includere l'integrazione con eventuali API fornite dalle forze dell'ordine italiane.
