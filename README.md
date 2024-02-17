@@ -75,3 +75,10 @@ Il progetto è in continua evoluzione e potrebbe includere le seguenti funzional
 * Implementazione di tutte le altre funzionalità offerte dall'API.
 * Aggiunta della possibilità di autenticazione tramite servizi OAuth come Google, Apple o SPID.
 * Espansione del servizio per includere l'integrazione con eventuali API fornite dalle forze dell'ordine italiane.
+
+# Informazioni Aggiuntive
+
+Per ulteriori dettagli e informazioni dettagliate, si prega di consultare la documentazione ufficiale:
+
+- GitHub OAuth Apps: [Documentazione GitHub OAuth Apps](https://docs.github.com/en/apps/oauth-apps)
+- Data.Police.UK: [Documentazione Data.Police.UK](https://data.police.uk/docs/)
