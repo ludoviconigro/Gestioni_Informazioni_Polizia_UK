@@ -163,6 +163,16 @@ table_html = """
   <meta charset="utf-8">
   <title>Elenco delle forze dell'ordine</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <div class="container mt-5">
@@ -184,11 +194,13 @@ table_html = """
         {% endfor %}
       </tbody>
     </table>
+    <div class="btn-container">
+      <form action="/github/callback" method="get" >
+        <button type="submit" class="btn btn-primary">Homepage</button>
+      </form>
+    </div>
   </div>
-    <form action="/github/callback" method="get" >
-        <button type="submit">Homepage</button>
-    </form>
-  </body>
+</body>
 </html>
 """
 #FINE HTML ROTTA FORZE DI POLIZIA
@@ -211,6 +223,15 @@ Senior_officers_html = """
             margin: 0;
             text-align: center;
         }
+            .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
     </style>        
                 </head>
 <body>
@@ -266,9 +287,11 @@ Senior_officers_html = """
     </select>
         <input type="submit" value="Ricerca">
     </form>
-        <form action="/github/callback" method="get" >
-        <button type="submit">Homepage</button>
-    </form>
+    <div class="btn-container">
+      <form action="/github/callback" method="get" >
+        <button type="submit" class="btn btn-primary">Homepage</button>
+      </form>
+    </div>
 
 </body>
 </html>
@@ -281,7 +304,19 @@ people_data_html = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ufficiali di alto grado presenti  a {{ city }} </title>
-</head>
+<style>
+            .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    </style>        
+
+    </head>
 <body>
     <h1>Ufficiali di alto grado presenti  a {{ city }} </h1>
     <table border="1">
@@ -298,9 +333,11 @@ people_data_html = """
             </tr>
         {% endfor %}
     </table>
-    <form action="/Senior_officers" method="get" >
-        <button type="submit">Indietro</button>
-    </form>
+    <div class="btn-container">
+      <form action="/Senior_officers" method="get" >
+        <button type="submit" class="btn btn-primary">Indietro</button>
+      </form>
+    </div>
     </body>
 </html>
 """
@@ -314,7 +351,19 @@ force_data_html = '''
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dati sulla forza dell'ordine</title>
-</head>
+<style>
+            .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    </style>        
+
+    </head>
 <body>
         <h1>Inserire il nome della città per ottenere i contatti delle forza dell'ordine in una citt&agrave:</h1>
     <form action="/force_data" method="post">
@@ -384,9 +433,11 @@ force_data_html = '''
             {% endfor %}
         </ul>
     {% endif %}
-    <form action="/github/callback" method="get" >
-        <button type="submit">Homepage</button>
-    </form>
+    <div class="btn-container">
+      <form action="/github/callback" method="get" >
+        <button type="submit" class="btn btn-primary">Homepage</button>
+      </form>
+    </div>
     </body>
 </html>
 '''
@@ -410,8 +461,15 @@ quartiere_forze_html = """
             margin: 0;
             text-align: center;
         }
-    </style>
-        
+            .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    </style>        
                 </head>
 <body>
     <h1>Elenco delle zone di competenza di una forza dell'ordine:</h1>
@@ -466,9 +524,11 @@ quartiere_forze_html = """
     </select>
         <input type="submit" value="Ricerca">
     </form>
-                <form action="/github/callback" method="get" >
-        <button type="submit">Homepage</button>
-    </form>
+    <div class="btn-container">
+      <form action="/github/callback" method="get" >
+        <button type="submit" class="btn btn-primary">Homepage</button>
+      </form>
+    </div>
 </body>
 </html>
 """
@@ -515,10 +575,11 @@ quartiere_forze_LISTA_html = """
             </tr>
         {% endfor %}
     </table>
-        <form action="/quartiere_forze">
-        <button type="submit">Indietro</button>
-    </form>
-
+        <div class="btn-container">
+      <form action="/quartiere_forze" method="get" >
+        <button type="submit" class="btn btn-primary">Indietro</button>
+      </form>
+    </div>
 </body>
 </html>
 """
