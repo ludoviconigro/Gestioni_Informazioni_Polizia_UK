@@ -195,7 +195,7 @@ table_html = """
       </tbody>
     </table>
     <div class="btn-container">
-      <form action="/github/callback" method="get" >
+      <form action="/homepage" method="get" >
         <button type="submit" class="btn btn-primary">Homepage</button>
       </form>
     </div>
@@ -288,7 +288,7 @@ Senior_officers_html = """
         <input type="submit" value="Ricerca">
     </form>
     <div class="btn-container">
-      <form action="/github/callback" method="get" >
+      <form action="/homepage" method="get" >
         <button type="submit" class="btn btn-primary">Homepage</button>
       </form>
     </div>
@@ -336,6 +336,9 @@ people_data_html = """
     <div class="btn-container">
       <form action="/Senior_officers" method="get" >
         <button type="submit" class="btn btn-primary">Indietro</button>
+      </form>
+            <form action="/homepage" method="get" >
+        <button type="submit" class="btn btn-primary">Homepage</button>
       </form>
     </div>
     </body>
@@ -434,7 +437,7 @@ force_data_html = '''
         </ul>
     {% endif %}
     <div class="btn-container">
-      <form action="/github/callback" method="get" >
+      <form action="/homepage" method="get" >
         <button type="submit" class="btn btn-primary">Homepage</button>
       </form>
     </div>
@@ -525,7 +528,7 @@ quartiere_forze_html = """
         <input type="submit" value="Ricerca">
     </form>
     <div class="btn-container">
-      <form action="/github/callback" method="get" >
+      <form action="/homepage" method="get" >
         <button type="submit" class="btn btn-primary">Homepage</button>
       </form>
     </div>
@@ -578,6 +581,9 @@ quartiere_forze_LISTA_html = """
         <div class="btn-container">
       <form action="/quartiere_forze" method="get" >
         <button type="submit" class="btn btn-primary">Indietro</button>
+      </form>
+            <form action="/homepage" method="get" >
+        <button type="submit" class="btn btn-primary">Homepage</button>
       </form>
     </div>
 </body>

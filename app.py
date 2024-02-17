@@ -10,11 +10,23 @@ def index():
 # INIZIO ROTTA LOGOUT
 @app.route('/logout')
 def logout():
-        # Rimuovi le informazioni di sessione
-        session.clear()
-
-        # Redirect alla homepage o ad un'altra pagina dopo il logout
+    # Ottieni il token di accesso dalla sessione
+    access_token = session.pop('access_token', None)
+    # URL per revocare il token di accesso da GitHub
+    revoke_url = 'https://api.github.com/applications/{}/token'.format(app.config['GITHUB_CLIENT_ID'])
+    # Headers per l'autenticazione con il token di accesso
+    headers = {
+        'Authorization': f'token {access_token}',
+        'Content-Type': 'application/json'    }
+    # Richiesta POST per revocare il token di accesso
+    revoke_response = requests.post(revoke_url, headers=headers)
+    # Verifica se la revoca del token è stata effettuata correttamente
+    if revoke_response.status_code == 204:
+        # Se la revoca è stata effettuata correttamente, reindirizza all'endpoint di login
         return html_page_inizio
+    else:
+        # Se la revoca non è stata effettuata correttamente, reindirizza all'endpoint di errore
+            return html_page_inizio
 # FINE ROTTA LOGOUT
     
 #INIZIO  ROTTA LOGIN
@@ -28,7 +40,7 @@ def login():
     return redirect(f'https://github.com/login/oauth/authorize?client_id={app.config["GITHUB_CLIENT_ID"]}&redirect_uri={callback_url}&scope={scope}')
 #FINE  ROTTA LOGIN
 
-#INIZIO ROTTA HOMEPAGE
+#INIZIO  ROTTA AUTENTICAZIONE
 @app.route('/github/callback')
 def authorized():
     # Ottieni il codice di autorizzazione dalla richiesta
@@ -50,6 +62,17 @@ def authorized():
     except KeyError:
         # Se l'accesso non è stato autorizzato, reindirizza all'endpoint di login
         return redirect(url_for('login'))  
+    # Salva il token di accesso in una sessione
+    session['access_token'] = access_token
+    # Reindirizza all'endpoint di autenticazione
+    return redirect(url_for('homepage'))
+#FINE  ROTTA AUTENTICAZIONE
+
+#INIZIO ROTTA HOMEPAGE
+@app.route('/homepage')
+def homepage():
+    # Ottieni il token di accesso dalla sessione
+    access_token = session['access_token']
     # URL per ottenere le informazioni sull'utente da GitHub
     user_url = 'https://api.github.com/user/emails'
     # Headers per l'autenticazione con il token di accesso
@@ -66,7 +89,7 @@ def authorized():
     if crime_last_updated_response.status_code == 200:
         last_updated = crime_last_updated_response.json()['date']
     # Passa i dati alla homepage come variabili da visualizzare
-    return render_template_string(home_html, page_content=None, github_name=session['email'], last_updated=last_updated)
+    return render_template_string(home_html, page_content=None, github_name=session['email'], last_updated=last_updated)      
 #FINE ROTTA HOMEPAGE
 
 # INIZIO ROTTA FORZE DI POLIZIA
