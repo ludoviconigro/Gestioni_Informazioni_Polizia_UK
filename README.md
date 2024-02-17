@@ -21,7 +21,7 @@ I progetto è composto da tre file **app.py**, **libb.py** e **file_html.py** di
 # Rotte dell'Applicazione
 * **/logout**: Rotta per il logout dell'utente.
 * **/**: Rotta per la pagina iniziale dell'applicazione.
-* **/github/callback**: Rotta per l'autenticazione tramite Oauth-Github.
+* **/github/callback**: Rotta per l'autenticazione tramite OAuth-Github.
 * **/Homepage**: Rotta per la homepage dell'applicazione.
 * **/List_of_forces**: Rotta per visualizzare la lista delle forze di polizia.
 * **/Senior_officers**: Rotta per visualizzare la lista degli ufficiali superiori.
