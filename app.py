@@ -71,25 +71,29 @@ def authorized():
 #INIZIO ROTTA HOMEPAGE
 @app.route('/homepage')
 def homepage():
-    # Ottieni il token di accesso dalla sessione
-    access_token = session['access_token']
-    # URL per ottenere le informazioni sull'utente da GitHub
-    user_url = 'https://api.github.com/user/emails'
-    # Headers per l'autenticazione con il token di accesso
-    headers = {
-        'Authorization': f'token {access_token}'    }
-    # Ottieni le informazioni sull'utente da GitHub
-    user_response = requests.get(user_url, headers=headers)
-    user_data = user_response.json()
-    # Salva l'indirizzo email dell'utente in una sessione
-    session['email'] = user_data[0]['email']
-    # Ottieni la data dell'ultimo aggiornamento dei dati sulla criminalità
-    crime_last_updated_response = requests.get('https://data.police.uk/api/crime-last-updated')
-    last_updated = 'N/A'
-    if crime_last_updated_response.status_code == 200:
-        last_updated = crime_last_updated_response.json()['date']
-    # Passa i dati alla homepage come variabili da visualizzare
-    return render_template_string(home_html, page_content=None, github_name=session['email'], last_updated=last_updated)      
+    if 'email' not in session:
+        # Se l'utente non è autenticato, reindirizzalo alla pagina di login
+        return redirect(url_for('login'))
+    else:
+        # Ottieni il token di accesso dalla sessione
+        access_token = session['access_token']
+        # URL per ottenere le informazioni sull'utente da GitHub
+        user_url = 'https://api.github.com/user/emails'
+        # Headers per l'autenticazione con il token di accesso
+        headers = {
+            'Authorization': f'token {access_token}'    }
+        # Ottieni le informazioni sull'utente da GitHub
+        user_response = requests.get(user_url, headers=headers)
+        user_data = user_response.json()
+        # Salva l'indirizzo email dell'utente in una sessione
+        session['email'] = user_data[0]['email']
+        # Ottieni la data dell'ultimo aggiornamento dei dati sulla criminalità
+        crime_last_updated_response = requests.get('https://data.police.uk/api/crime-last-updated')
+        last_updated = 'N/A'
+        if crime_last_updated_response.status_code == 200:
+            last_updated = crime_last_updated_response.json()['date']
+        # Passa i dati alla homepage come variabili da visualizzare
+        return render_template_string(home_html, page_content=None, github_name=session['email'], last_updated=last_updated)      
 #FINE ROTTA HOMEPAGE
 
 # INIZIO ROTTA FORZE DI POLIZIA
