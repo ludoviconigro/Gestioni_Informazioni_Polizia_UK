@@ -71,7 +71,7 @@ def authorized():
 #INIZIO ROTTA HOMEPAGE
 @app.route('/homepage')
 def homepage():
-    if 'email' not in session:
+    if 'access_token' not in session:
         # Se l'utente non è autenticato, reindirizzalo alla pagina di login
         return redirect(url_for('login'))
     else:
