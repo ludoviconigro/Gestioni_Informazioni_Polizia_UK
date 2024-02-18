@@ -6,28 +6,6 @@ def index():
     session.clear()
     return html_page_inizio
 #FINE ROTTA PAGINA APERTURA
-
-# INIZIO ROTTA LOGOUT
-@app.route('/logout')
-def logout():
-    # Ottieni il token di accesso dalla sessione
-    access_token = session.pop('access_token', None)
-    # URL per revocare il token di accesso da GitHub
-    revoke_url = 'https://api.github.com/applications/{}/token'.format(app.config['GITHUB_CLIENT_ID'])
-    # Headers per l'autenticazione con il token di accesso
-    headers = {
-        'Authorization': f'token {access_token}',
-        'Content-Type': 'application/json'    }
-    # Richiesta POST per revocare il token di accesso
-    revoke_response = requests.post(revoke_url, headers=headers)
-    # Verifica se la revoca del token è stata effettuata correttamente
-    if revoke_response.status_code == 204:
-        # Se la revoca è stata effettuata correttamente, reindirizza all'endpoint di login
-        return html_page_inizio
-    else:
-        # Se la revoca non è stata effettuata correttamente, reindirizza all'endpoint di errore
-            return html_page_inizio
-# FINE ROTTA LOGOUT
     
 #INIZIO  ROTTA LOGIN
 @app.route('/login')
@@ -96,6 +74,28 @@ def homepage():
         return render_template_string(home_html, page_content=None, github_name=session['email'], last_updated=last_updated)      
 #FINE ROTTA HOMEPAGE
 
+# INIZIO ROTTA LOGOUT
+@app.route('/logout')
+def logout():
+    # Ottieni il token di accesso dalla sessione
+    access_token = session.pop('access_token', None)
+    # URL per revocare il token di accesso da GitHub
+    revoke_url = 'https://api.github.com/applications/{}/token'.format(app.config['GITHUB_CLIENT_ID'])
+    # Headers per l'autenticazione con il token di accesso
+    headers = {
+        'Authorization': f'token {access_token}',
+        'Content-Type': 'application/json'    }
+    # Richiesta POST per revocare il token di accesso
+    revoke_response = requests.post(revoke_url, headers=headers)
+    # Verifica se la revoca del token è stata effettuata correttamente
+    if revoke_response.status_code == 204:
+        # Se la revoca è stata effettuata correttamente, reindirizza all'endpoint di login
+        return html_page_inizio
+    else:
+        # Se la revoca non è stata effettuata correttamente, reindirizza all'endpoint di errore
+            return html_page_inizio
+# FINE ROTTA LOGOUT
+
 # INIZIO ROTTA FORZE DI POLIZIA
 def fetch_police_forces():
     # URL dell'API per ottenere le informazioni sulle forze di polizia
@@ -110,7 +110,7 @@ def fetch_police_forces():
 @app.route('/List_of_forces')
 def police_forces_table():
     # Verifica se l'utente è autenticato tramite sessione
-    if 'email' not in session:
+    if 'access_token' not in session:
         # Se l'utente non è autenticato, reindirizzalo alla pagina di login
         return redirect(url_for('login'))    
     else:
@@ -145,7 +145,7 @@ def get_people_data(city):
 @app.route('/Senior_officers', methods=['GET', 'POST'])
 def Senior_officers():
     # Verifica se l'utente è autenticato tramite sessione
-    if 'email' not in session:
+    if 'access_token' not in session:
         # Se l'utente non è autenticato, reindirizzalo alla pagina di login
         return redirect(url_for('login'))
     else:
@@ -167,7 +167,7 @@ def Senior_officers():
 @app.route('/people_data/<city>')
 def people_data(city):
         # Verifica se l'utente è autenticato tramite sessione
-    if 'email' not in session:
+    if 'access_token' not in session:
         # Se l'utente non è autenticato, reindirizzalo alla pagina di login
         return redirect(url_for('login'))
     else:
@@ -188,7 +188,7 @@ def people_data(city):
 @app.route('/force_data', methods=['GET', 'POST'])
 def force_data():
     # Verifica se l'utente è autenticato tramite sessione
-    if 'email' not in session:
+    if 'access_token' not in session:
         # Se l'utente non è autenticato, reindirizzalo alla pagina di login
         return redirect(url_for('login'))    
     else:
@@ -243,7 +243,7 @@ def get_quartiere_forze(city):
 @app.route('/quartiere_forze', methods=['GET', 'POST'])
 def quartiere_forze():
     # Verifica se l'utente è autenticato tramite sessione
-    if 'email' not in session:
+    if 'access_token' not in session:
         # Se l'utente non è autenticato, reindirizzalo alla pagina di login
         return redirect(url_for('login'))
     else:
@@ -265,7 +265,7 @@ def quartiere_forze():
 @app.route('/quartiere_forze_LISTA/<city>')
 def quartiere_forze_LISTA(city):
         # Verifica se l'utente è autenticato tramite sessione
-    if 'email' not in session:
+    if 'access_token' not in session:
         # Se l'utente non è autenticato, reindirizzalo alla pagina di login
         return redirect(url_for('login'))
     else:
