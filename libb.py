@@ -12,6 +12,6 @@ except Exception as e:
     print("Mancano alcuni moduli {}".format(e))
     
 app = Flask(__name__)
-app.config['GITHUB_CLIENT_ID'] = '71a6e1bbc25d5250abee'
-app.config['GITHUB_CLIENT_SECRET'] = '5a45b659b0ff82bd3fb205dac4e3a32a0385d18e'
+app.config['GITHUB_CLIENT_ID'] = '3a9b3f9a8286b8ca5bea'
+app.config['GITHUB_CLIENT_SECRET'] = '1afb3f072f82a40767da6cbf7664c060523d6a84'
 app.config['SECRET_KEY'] = "chiave"
