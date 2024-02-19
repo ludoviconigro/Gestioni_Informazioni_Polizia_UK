@@ -1,4 +1,4 @@
-  # Applicazione di Gestione delle Informazioni di Polizia Inglese
+  # Applicazione per la Gestione delle Informazioni di Polizia Inglese
   ## Ludovico Nigro
 Questo progetto contiene un'applicazione web che utilizza il framework Flask che consente agli utenti di accedere a varie informazioni relative alla polizia di diversi paesi. Gli utenti possono autenticarsi utilizzando il loro account GitHub e accedere a diverse funzionalità dell'applicazione.
 
